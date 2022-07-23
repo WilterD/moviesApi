@@ -1,9 +1,26 @@
+let pagina =1;
+
+
+let btnSiguiente = document.getElementById('btnSiguiente');
+let btnAnterior = document.getElementById('btnAnterior');
+
+btnSiguiente.addEventListener('click', () => {
+    pagina++;
+    console.log(pagina);
+    cargarPeliculas();
+});
+btnAnterior.addEventListener('click', () => {
+    pagina--;
+    cargarPeliculas();
+});
+
+
 const cargarPeliculas = async() => {
 try{
+
+
     
-        const respuesta = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=763fbadd05b3a95565f579538a378229&language=es-MX'); 
-        console.log('respuesta');
-        console.log(respuesta);
+        const respuesta = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=763fbadd05b3a95565f579538a378229&language=es-MX&page=${pagina}`); 
         
         if(respuesta.status===200){
             console.log('datos');
